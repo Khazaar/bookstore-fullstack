@@ -13,12 +13,12 @@ import BooksTable from './books.component';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../features/store';
 import { IBookEntity } from '@shared';
-import { addBook, resetStore } from '../features/bookStoreSlice';
 import { createBook } from '../services/books.services';
 import { useBooks } from '../hooks/useBooks';
+import { logOut } from '../features/userSlice';
 
 export default function StoreComponent() {
-  useBooks();
+  const dispatch = useDispatch();
   const books = useSelector((state: RootState) => state.books.value);
   const [newBook, setNewBook] = useState<IBookEntity>({
     title: '',
@@ -83,6 +83,13 @@ export default function StoreComponent() {
       </Card>
       <Divider component="li" />
       <BooksTable books={books} />
+      <Button
+        onClick={() => {
+          dispatch(logOut());
+        }}
+      >
+        Log Out
+      </Button>
     </Box>
   );
 }
