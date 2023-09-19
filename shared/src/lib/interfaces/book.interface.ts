@@ -1,7 +1,7 @@
 import { ObjectId } from 'typeorm';
 
 export interface IBookEntity {
-  id: ObjectId;
+  id?: ObjectId;
   title: string;
   author: string;
   description: string;
